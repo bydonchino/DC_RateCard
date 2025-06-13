@@ -1,0 +1,204 @@
+import React, { useState } from 'react';
+
+// Main App component
+const App = () => {
+  // State for editable content
+  const [rateCardContent, setRateCardContent] = useState({
+    // Replace with the DIRECT URL to your main logo image
+    logoUrl: "https://i.imgur.com/EjRIEbT.png",
+    // Add URL for the photo on the left (with transparent background)
+    leftPhotoUrl: "https://i.imgur.com/e5Vk33D.jpeg", // Replace with your photo URL
+    mainBrandName: "Don Chino",
+    subBrandTitle: "Professional Chef & Content Creator",
+    tagline: "¿Por Qué No?", // Teks tagline yang sudah Anda edit
+    aboutMe: "Food is my canvas, and the kitchen is my stage! As a professional chef turned content creator, I share my love for cooking through captivating videos and mouthwatering dishes. With a deep understanding of the culinary world and a creative touch, I specialize in crafting content that not only inspires but also engages audiences. Collaborating with me means bringing your brand closer to food enthusiasts through authentic storytelling and visually stunning content. Together, let’s create impactful campaigns that resonate with your audience and leave a lasting impression.", // Teks aboutMe yang sudah Anda edit
+    socialMedia: [
+      { platform: "Instagram", handle: "@bydonchino", count: "185K+", countType: "Followers", iconClass: "fa-brands fa-instagram", url: "https://www.instagram.com/bydonchino" },
+      { platform: "TikTok", handle: "@bydonchino", count: "485K+", countType: "Followers", iconClass: "fa-brands fa-tiktok", url: "https://www.tiktok.com/@bydonchino" },
+      { platform: "YouTube", handle: "bydonchino", count: "55K+", countType: "Subscribers", iconClass: "fa-brands fa-youtube", url: "https://www.youtube.com/c/bydonchino" },
+    ],
+    services: [
+      {
+        category: "Short Video (Duration Max 2 minutes 30 seconds)",
+        items: [
+          { name: "Instagram Reels", price: "IDR 5,000,000" },
+          { name: "TikTok", price: "IDR 5,000,000" },
+          { name: "YouTube Shorts", price: "IDR 4,000,000" },
+          { name: "Content Mirroring to All Platform", price: "IDR 2,500,000" },
+          { name: "Content Mirroring to Instagram / TikTok", price: "IDR 2,000,000" },
+          { name: "Content Mirroring to YouTube Shorts", price: "IDR 1,000,000" },
+        ],
+      },
+      {
+        category: "Professional Culinary Collaborations",
+        items: [
+          { name: "Offline Cooking Demo (Duration 2 hours)", price: "Starts from IDR 5,000,000" },
+          { name: "Judging Cooking Competition (Duration 3 hours)", price: "Starts from IDR 5,000,000" },
+          { name: "Pop-up cooking event (4 hours service)", price: "Starts from IDR 10,000,000" },
+        ],
+      },
+      {
+        category: "F&B Consultant Services",
+        items: [
+          { name: "F&B Consultation", price: "Price Based on Project Scope" },
+        ],
+      },
+    ],
+    contact: {
+      email: "bydonchino@gmail.com",
+      phone: "+62 858-1163-1311", // Keep Indonesian format if primarily for local clients
+    },
+    termsAndConditions: [ // New property for Terms & Conditions
+      "All prices are subject to change and may vary based on project complexity, specific requirements, and usage rights. A detailed quote will be provided upon discussion of your project needs.",
+      "A 50% down payment is required to confirm booking and commence work. The remaining 50% is due upon completion and before final content delivery.",
+      "Clients are entitled to two rounds of revisions for video and photo content. Additional revisions may incur extra charges.",
+      "Standard delivery time for short videos is 7-10 business days after content capture. Expedited delivery may be available for an additional fee.",
+      "Usage rights for content are non-exclusive unless otherwise specified in the agreement. Exclusive usage rights can be negotiated.",
+      "Cancellation fees may apply depending on the notice period. Please refer to our detailed service agreement for full terms.",
+      "All content created will adhere to Don Chino's established storytelling and content style to ensure maximum audience engagement and viewer reach.", // New term added here
+    ],
+    footerText: "Let’s create something extraordinary together. For inquiries and collaborations, don’t hesitate to reach out. Thank you for your trust and support!",
+  });
+
+  return (
+    <div className="min-h-screen bg-gray-50 font-inter p-4 sm:p-6 md:p-8 flex items-center justify-center">
+      {/* Removed Font Awesome script from here as it should be in the HTML <head> */}
+
+      <div className="w-full max-w-4xl bg-amber-50 shadow-xl rounded-2xl overflow-hidden"> {/* Changed bg-white to bg-amber-50 for cream color */}
+        {/* Header Section */}
+        <div className="bg-gradient-to-br from-emerald-700 to-emerald-900 p-8 text-white text-center rounded-t-2xl relative overflow-hidden flex items-center justify-center h-80">
+          {/* Photo on the Left (with transparent background) - Absolute positioned */}
+          {rateCardContent.leftPhotoUrl && (
+            <img
+              src={rateCardContent.leftPhotoUrl}
+              alt="Your Photo"
+              className="absolute left-8 top-1/2 -translate-y-1/2 w-48 h-64 shadow-lg object-cover z-10"
+              onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/150x150/ffffff/000000?text=YOUR+PHOTO"; }}
+            />
+          )}
+
+          {/* Main Logo - Positioned center right and scaled down */}
+          {rateCardContent.logoUrl && (
+            <img
+              src={rateCardContent.logoUrl}
+              alt="Brand Logo"
+              className="absolute right-8 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full shadow-lg object-cover z-10"
+              onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/150x150/FF6347/FFFFFF?text=YOUR+LOGO"; }}
+            />
+          )}
+
+          {/* Central Content (Name, Title, Tagline) - Positioned in the center */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
+            <div className="text-5xl font-bold mb-1 tracking-wide">
+              {rateCardContent.mainBrandName}
+            </div>
+            <p className="text-xl font-light opacity-90 mb-4">
+              {rateCardContent.subBrandTitle}
+            </p>
+            <p className="text-lg font-light italic opacity-90">
+              {rateCardContent.tagline}
+            </p>
+          </div>
+        </div>
+
+        {/* About Me Section */}
+        <div className="p-8 border-b border-gray-100">
+          <h2 className="text-3xl font-extrabold text-emerald-700 mb-4 text-center">About Me</h2>
+          <p className="text-gray-700 leading-relaxed text-center max-w-2xl mx-auto">
+            {rateCardContent.aboutMe}
+          </p>
+        </div>
+
+        {/* Social Media Section */}
+        <div className="p-8 bg-gray-50 border-b border-gray-100">
+          <h2 className="text-3xl font-extrabold text-emerald-700 mb-6 text-center">Social Media</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            {rateCardContent.socialMedia.map((platform, index) => (
+              <div key={index} className="bg-amber-50 p-6 rounded-xl shadow-md transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                <a
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center text-gray-800 hover:text-orange-500 transition-colors"
+                >
+                  <i className={`${platform.iconClass} mr-2 text-2xl text-gray-700`}></i>
+                  <span className="text-xl font-semibold">{platform.handle}</span>
+                </a>
+                <p className="text-gray-600 text-sm uppercase font-medium mt-1">
+                  {platform.platform}
+                </p>
+                <h3 className="text-2xl font-bold text-gray-800 mt-2 mb-2">{platform.count}</h3>
+                <p className="text-gray-500 text-xs">
+                  {platform.countType}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Services & Pricing Section */}
+        <div className="p-8">
+          <h2 className="text-3xl font-extrabold text-emerald-700 mb-6 text-center">Services & Pricing</h2>
+          <div className="space-y-8">
+            {rateCardContent.services.map((category, index) => (
+              <div key={index} className="bg-amber-50 rounded-xl shadow-inner p-6 border border-gray-100">
+                <h3 className="text-2xl font-bold text-orange-600 mb-4">{category.category}</h3>
+                <ul className="list-disc list-inside space-y-3">
+                  {category.items.map((item, idx) => (
+                    <li key={idx} className="flex justify-between items-start text-gray-700">
+                      <span className="font-medium text-lg">{item.name}</span>
+                      <span className="text-xl font-semibold text-gray-900 ml-4 whitespace-nowrap">{item.price}</span>
+                    </li>
+                    ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Terms & Conditions Section - NEWLY ADDED */}
+        <div className="p-8 bg-gray-50 border-b border-gray-100">
+          <h2 className="text-3xl font-extrabold text-emerald-700 mb-6 text-center">Terms & Conditions</h2>
+          <ul className="list-disc list-inside space-y-3 text-gray-700 leading-relaxed max-w-2xl mx-auto">
+            {rateCardContent.termsAndConditions.map((term, index) => (
+              <li key={index}>{term}</li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact Section */}
+        <div className="p-8 bg-amber-50 text-center rounded-b-2xl">
+          <h2 className="text-3xl font-extrabold text-emerald-700 mb-4 text-center">Contact Me</h2>
+          <div className="text-gray-700 text-lg space-y-2 mb-6">
+            <p>
+              <i className="fas fa-envelope text-orange-500 mr-2"></i>
+              <span className="font-semibold">E-mail:</span>{" "}
+              <a href={`mailto:${rateCardContent.contact.email}`} className="hover:text-orange-600 transition-colors">
+                {rateCardContent.contact.email}
+              </a>
+            </p>
+            <p>
+              <i className="fas fa-phone-alt text-orange-500 mr-2"></i>
+              <span className="font-semibold">Phone / WhatsApp:</span>{" "}
+              <a href={`tel:${rateCardContent.contact.phone}`} className="hover:text-orange-600 transition-colors">
+                {rateCardContent.contact.phone}
+              </a>
+            </p>
+            {rateCardContent.contact.website && rateCardContent.contact.website !== "" && (
+            <p>
+              <i className="fas fa-globe text-orange-500 mr-2"></i>
+              <span className="font-semibold">Website:</span>{" "}
+              <a href={`https://${rateCardContent.contact.website}`} target="_blank" rel="noopener noreferrer" className="hover:text-orange-600 transition-colors">
+                {rateCardContent.website}
+              </a>
+            </p>
+            )}
+          </div>
+          <p className="text-gray-600 text-md italic mt-4">{rateCardContent.footerText}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
